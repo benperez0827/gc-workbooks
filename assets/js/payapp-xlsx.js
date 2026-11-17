@@ -58,6 +58,11 @@
 
   async function build(state, idx, calcApp, opts = {}) {
     const c = state.contract;
+    const L = Object.assign({
+      from: "CONTRACTOR:", to: "TO OWNER:", via: "VIA LENDER:", via2: "VIA ARCHITECT:", who: "contractor", whoCap: "CONTRACTOR",
+      dist: ["Owner", "Lender", "Architect", "Contractor"], distChecked: 3,
+      sign1: "OWNER / LENDER:", sign2: "ARCHITECT / INSPECTOR:", reviewer: "reviewer",
+    }, opts.labels || {});
     const app = state.apps[idx];
     const { rows, g } = calcApp(idx);
     const wb = new ExcelJS.Workbook();
@@ -69,7 +74,7 @@
       views: [{ showGridLines: false }],
       pageSetup: { paperSize: 1, orientation: "landscape", fitToPage: true, fitToWidth: 1, fitToHeight: 1, horizontalCentered: true, margins: { left: 0.35, right: 0.35, top: 0.4, bottom: 0.4, header: 0.2, footer: 0.2 } },
     });
-    ws.columns = [{ width: 4 }, { width: 34 }, { width: 9 }, { width: 15 }, { width: 17 }, { width: 3 }, { width: 17 }, { width: 30 }, { width: 18 }, { width: 13 }, { width: 18 }];
+    ws.columns = [{ width: 4 }, { width: 34 }, { width: 9 }, { width: 15 }, { width: 17 }, { width: 3 }, { width: 19 }, { width: 30 }, { width: 18 }, { width: 13 }, { width: 18 }];
 
     merge(ws, "A1:E1", "APPLICATION AND CERTIFICATE FOR PAYMENT", { sans: true, size: 17, bold: true });
     set(ws, "H1", "Summary sheet", { sans: true, size: 10, bold: true });
@@ -80,11 +85,11 @@
 
     // Header block
     const hdr = [
-      [4, "CONTRACTOR:", c.contractor, "PROJECT:", c.projectName, "APPLICATION NO.:", app.no],
+      [4, L.from, c.contractor, "PROJECT:", c.projectName, "APPLICATION NO.:", app.no],
       [5, "", c.contractorAddress || "", "", c.projectAddress, "PERIOD TO:", dt(app.periodTo)],
-      [6, "TO OWNER:", c.owner, "", "", "JOB NO.:", c.jobNo],
-      [7, "", c.ownerAddress || "", "VIA LENDER:", c.lender, "CONTRACT DATE:", dt(c.contractDate)],
-      [8, "CONTRACT FOR:", c.contractFor || "General construction", "VIA ARCHITECT:", c.architect || "", "APPLICATION DATE:", dt(app.appDate)],
+      [6, L.to, c.owner, "", "", "JOB NO.:", c.jobNo],
+      [7, "", c.ownerAddress || "", L.via, c.lender, "CONTRACT DATE:", dt(c.contractDate)],
+      [8, "CONTRACT FOR:", c.contractFor || "General construction", L.via2, c.architect || "", "APPLICATION DATE:", dt(app.appDate)],
     ];
     hdr.forEach(([r, l1, v1, l2, v2, l3, v3]) => {
       set(ws, `A${r}`, l1, { size: 10 }); ws.mergeCells(`A${r}:B${r}`);
@@ -96,11 +101,11 @@
       set(ws, `J${r}`, v3, { h: "left", fmt: v3 instanceof Date ? "mm/dd/yy" : undefined, bold: true });
     });
     set(ws, "K4", "Distribution to:");
-    ["Owner", "Lender", "Architect", "Contractor"].forEach((who, i) => set(ws, `K${5 + i}`, `${who === "Contractor" ? "☒" : "☐"} ${who.toUpperCase()}`));
+    L.dist.forEach((who, i) => set(ws, `K${5 + i}`, `${i === L.distChecked ? "☒" : "☐"} ${who.toUpperCase()}`));
     underline(ws, "A9:K9", medium);
 
     // Left: contractor's application
-    merge(ws, "A11:E11", "CONTRACTOR'S APPLICATION FOR PAYMENT", { sans: true, size: 13, bold: true });
+    merge(ws, "A11:E11", `${L.whoCap}'S APPLICATION FOR PAYMENT`, { sans: true, size: 13, bold: true });
     merge(ws, "A12:E12", "Application is made for payment, as shown below, in connection with the contract.", {});
     merge(ws, "A13:E13", "The continuation sheet is attached.", {});
 
@@ -176,8 +181,8 @@
     gridRange(ws, `B${co0}:E${co0 + 4}`);
 
     // Right: contractor certification, notary, certificate for payment
-    merge(ws, "G11:K15", "The undersigned contractor states that the work and stored materials covered by this application are complete through the period end date as shown, that payments received on earlier applications have been paid to the subcontractors and suppliers who performed that work, and that the current payment shown here is due under the contract.", { wrap: true, v: "top", size: 11 });
-    set(ws, "G17", "CONTRACTOR:", { sans: true, bold: true });
+    merge(ws, "G11:K15", `The undersigned ${L.who} states that the work and stored materials covered by this application are complete through the period end date as shown, that payments received on earlier applications have been paid to the subcontractors and suppliers who performed that work, and that the current payment shown here is due under the contract.`, { wrap: true, v: "top", size: 11 });
+    set(ws, "G17", L.from, { sans: true, bold: true });
     merge(ws, "H17:K17", c.contractor, { bold: true });
     set(ws, "G19", "By:"); underline(ws, "H19:I19");
     set(ws, "J19", "Date:", { h: "right" }); underline(ws, "K19:K19");
@@ -189,16 +194,16 @@
     underline(ws, "G26:K26", medium);
 
     merge(ws, "G28:K28", "CERTIFICATE FOR PAYMENT", { sans: true, size: 13, bold: true });
-    merge(ws, "G29:K33", "Based on site observations and the data in this application, the reviewer confirms that the work has progressed as shown, that its quality meets the contract documents as far as the reviewer can tell, and that the contractor is entitled to payment of the amount certified.", { wrap: true, v: "top", size: 11 });
+    merge(ws, "G29:K33", `Based on site observations and the data in this application, the ${L.reviewer} confirms that the work has progressed as shown, that its quality meets the contract documents as far as the ${L.reviewer} can tell, and that the ${L.who} is entitled to payment of the amount certified.`, { wrap: true, v: "top", size: 11 });
     set(ws, "G35", "AMOUNT CERTIFIED", { sans: true, bold: true, size: 11 });
     set(ws, "I35", "$", { h: "right" });
     set(ws, "J35", null, { fmt: MONEY, fill: CYAN }); ws.mergeCells("J35:K35"); underline(ws, "J35:K35", medium);
     merge(ws, "G36:K37", "If the amount certified differs from the amount requested, attach the reason and initial each changed figure on both sheets.", { italic: true, wrap: true, v: "top", size: 9 });
-    set(ws, "G39", "OWNER / LENDER:", { sans: true, bold: true });
+    set(ws, "G39", L.sign1, { sans: true, bold: true });
     set(ws, "G40", "By:"); underline(ws, "H40:I40"); set(ws, "J40", "Date:", { h: "right" }); underline(ws, "K40:K40");
-    set(ws, "G42", "ARCHITECT / INSPECTOR:", { sans: true, bold: true });
+    set(ws, "G42", L.sign2, { sans: true, bold: true });
     set(ws, "G43", "By:"); underline(ws, "H43:I43"); set(ws, "J43", "Date:", { h: "right" }); underline(ws, "K43:K43");
-    merge(ws, "G45:K46", "This certificate is not negotiable. The amount certified is payable only to the contractor named here. Issuing, paying, or accepting it does not waive any right of the owner or contractor under the contract.", { wrap: true, v: "top", size: 9 });
+    merge(ws, "G45:K46", `This certificate is not negotiable. The amount certified is payable only to the ${L.who} named here. Issuing, paying, or accepting it does not waive any right of either party under the contract.`, { wrap: true, v: "top", size: 9 });
     ws.pageSetup.printArea = "A1:K46";
 
     // =============== Sheet 2: Continuation Sheet ===============
@@ -212,7 +217,7 @@
     cs.getRow(1).height = 24;
     set(cs, "J1", "PAGE 2 OF 2", { h: "right" });
     underline(cs, "A1:J1");
-    merge(cs, "A2:E2", "Application and certificate for payment, with the contractor's signed statement, is attached.", { size: 10 });
+    merge(cs, "A2:E2", `Application and certificate for payment, with the ${L.who}'s signed statement, is attached.`, { size: 10 });
     merge(cs, "A3:E3", "Amounts are stated to the nearest cent.", { size: 10 });
     merge(cs, "A4:E4", "Use column I where retainage varies by line item.", { size: 10 });
     const ref = [["APPLICATION NO.:", "Application!J4", app.no, null], ["APPLICATION DATE:", "Application!J8", dt(app.appDate), "mm/dd/yy"], ["PERIOD TO:", "Application!J5", dt(app.periodTo), "mm/dd/yy"], ["JOB NO.:", "Application!J6", c.jobNo, null]];
@@ -287,5 +292,5 @@
     return wb.xlsx.writeBuffer();
   }
 
-  window.GCW_PAYAPP = { build };
+  window.GCW_PAYAPP = { build, helpers: { set, merge, boxRange, gridRange, underline, fill, MONEY, CYAN, YELLOW, SANS, SERIF, thin, medium } };
 })();

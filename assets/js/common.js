@@ -14,6 +14,7 @@
       "index.html": "https://claude.ai/artifact/V71FiDSfX5pRc2aaZ2idm4",
       "estimate.html": "https://claude.ai/artifact/5jQ7LvAKXvBsBpV1AgU4Y5",
       "admin.html": "https://claude.ai/artifact/NQZKsykPaHqTxhfNPLVgrA",
+      "sub.html": "https://claude.ai/artifact/47WeVsW4MZEU1bdPxhZ3DK",
       "permits.html": "https://claude.ai/artifact/YRJajQhR3MdMCKw4CbtGQh",
       "delay.html": "https://claude.ai/artifact/HTuyD6pFRRnULr86LEFQW4",
     },
@@ -26,6 +27,7 @@
     { href: "index.html", label: "Overview" },
     { href: "estimate.html", label: "Estimating" },
     { href: "admin.html", label: "Admin & billing" },
+    { href: "sub.html", label: "Subcontractors" },
     { href: "permits.html", label: "Permit tracker" },
     { href: "delay.html", label: "Delay cost" },
   ];

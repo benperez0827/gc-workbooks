@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Subcontractor workbook</title>
+  <meta name="description" content="Billing, change orders, T&M tickets, lien waivers, and Arizona preliminary notices for subcontractors working several jobs for several GCs.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect x=%273%27 y=%273%27 width=%2726%27 height=%2726%27 rx=%274%27 fill=%27%231f2933%27/%3E%3Crect x=%277%27 y=%2711%27 width=%2718%27 height=%2710%27 rx=%272%27 fill=%27none%27 stroke=%27%23b8322a%27 stroke-width=%272.5%27/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="sub.html">
+  <header data-header></header>
+  <main class="wrap">
+    <div class="workbook-head">
+      <div>
+        <h1 id="sub-title">Subcontractor workbook</h1>
+        <p id="sub-sub">Every job, every GC, one place.</p>
+      </div>
+      <div class="actions no-print">
+        <div class="field" style="width:170px"><label for="as-of">As of</label><input id="as-of" type="date" data-key="s:asOf"></div>
+        <button id="btn-reset">Reset demo</button>
+      </div>
+    </div>
+
+    <div class="tabs" role="tablist">
+      <button role="tab" data-tab="t-hub">Billing hub</button>
+      <button role="tab" data-tab="t-job">Jobs & pay apps</button>
+      <button role="tab" data-tab="t-cor">Change orders & T&M</button>
+      <button role="tab" data-tab="t-lien">Waivers & 20-day notices</button>
+      <button role="tab" data-tab="t-co">Company & rates</button>
+    </div>
+
+    <section id="t-hub" class="panel" role="tabpanel"></section>
+    <section id="t-job" class="panel" role="tabpanel"></section>
+    <section id="t-cor" class="panel" role="tabpanel"></section>
+    <section id="t-lien" class="panel" role="tabpanel"></section>
+    <section id="t-co" class="panel" role="tabpanel"></section>
+  </main>
+  <footer data-footer></footer>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/vendor/exceljs.min.js"></script>
+  <script src="assets/js/payapp-xlsx.js"></script>
+  <script src="assets/js/waivers.js"></script>
+  <script src="assets/js/sub.js"></script>
+</body>
+</html>
