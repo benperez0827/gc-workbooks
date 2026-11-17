@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin workbook</title>
+  <meta name="description" content="Turn the final estimate into a schedule of values, track change orders, build monthly pay applications and lender draw packages, generate lien waivers, and track closeout.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect x=%273%27 y=%273%27 width=%2726%27 height=%2726%27 rx=%274%27 fill=%27%231f2933%27/%3E%3Crect x=%277%27 y=%2711%27 width=%2718%27 height=%2710%27 rx=%272%27 fill=%27none%27 stroke=%27%23b8322a%27 stroke-width=%272.5%27/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="admin.html">
+  <header data-header></header>
+  <main class="wrap">
+    <div class="workbook-head">
+      <div>
+        <h1 id="adm-title">Admin workbook</h1>
+        <p id="adm-sub">Contract, billing, waivers, and closeout in one place.</p>
+      </div>
+      <div class="actions no-print">
+        <button id="btn-sync">Rebuild SOV from estimate</button>
+        <a class="btn" href="templates/pay-application-template.xlsx" download>Pay app Excel template</a>
+        <button id="btn-reset">Reset demo</button>
+      </div>
+    </div>
+
+    <div class="tabs" role="tablist">
+      <button role="tab" data-tab="t-contract">Contract & SOV</button>
+      <button role="tab" data-tab="t-cos">Change orders</button>
+      <button role="tab" data-tab="t-payapp">Pay applications</button>
+      <button role="tab" data-tab="t-draw">Lender draw & waivers</button>
+      <button role="tab" data-tab="t-waiver">Lien waiver forms</button>
+      <button role="tab" data-tab="t-closeout">Closeout</button>
+    </div>
+
+    <section id="t-contract" class="panel" role="tabpanel"></section>
+    <section id="t-cos" class="panel" role="tabpanel"></section>
+    <section id="t-payapp" class="panel" role="tabpanel"></section>
+    <section id="t-draw" class="panel" role="tabpanel"></section>
+    <section id="t-waiver" class="panel" role="tabpanel"></section>
+    <section id="t-closeout" class="panel" role="tabpanel"></section>
+  </main>
+  <footer data-footer></footer>
+  <script src="assets/vendor/xlsx-style.bundle.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/templates-data.js"></script>
+  <script src="assets/js/xl.js"></script>
+  <script src="assets/vendor/exceljs.min.js"></script>
+  <script src="assets/js/payapp-xlsx.js"></script>
+  <script src="assets/js/data-defaults.js"></script>
+  <script src="assets/js/estimate-calc.js"></script>
+  <script src="assets/js/waivers.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>

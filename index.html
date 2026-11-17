@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project controls workbooks for builders</title>
+  <meta name="description" content="Estimating, billing, lien waiver, permit tracking, and delay cost tools for small general contractors and residential developers.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect x=%273%27 y=%273%27 width=%2726%27 height=%2726%27 rx=%274%27 fill=%27%231f2933%27/%3E%3Crect x=%277%27 y=%2711%27 width=%2718%27 height=%2710%27 rx=%272%27 fill=%27none%27 stroke=%27%23b8322a%27 stroke-width=%272.5%27/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="index.html">
+  <header data-header></header>
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Every day your plans sit on someone's desk has a price.</h1>
+        <p>Working tools for small GCs and residential developers. Estimating, billing, lien waivers, permit tracking, and closeout share one set of numbers, so the estimator, the PM, and the accountant stop rebuilding each other's spreadsheets.</p>
+        <div class="cta">
+          <a class="btn btn-red" href="estimate.html">Open the estimating workbook</a>
+          <a class="btn btn-outline" href="permits.html">See the permit tracker</a>
+        </div>
+      </div>
+
+      <div class="meter" aria-live="polite">
+        <label for="m-size">Project</label>
+        <select id="m-size">
+          <option value="141900">40-unit build-to-rent, $12M</option>
+          <option value="382500" selected>120-unit community, $32M</option>
+          <option value="693600">220-unit community, $58M</option>
+          <option value="1217427">360-unit community, $96.5M</option>
+        </select>
+        <div style="margin-top:1rem">
+          <div class="row"><label for="m-days">Days past the review goal</label><strong id="m-days-out">14 days</strong></div>
+          <input id="m-days" type="range" min="0" max="90" value="14">
+        </div>
+        <div class="redline-box">
+          <div class="big" id="m-cost">$178,500</div>
+          <div class="big-label">added cost once construction is waiting on it</div>
+        </div>
+        <p class="src">Monthly delay costs come from a delay-cost model: lost rent, construction interest, and extended site costs. Fourteen days is the estimated avoidable lag per review cycle. Phoenix civil reviews for small projects averaged 43 days against a 20-day goal in September 2026 (<a href="https://www.phoenix.gov/content/dam/phoenix/pddsite/documents/about-us/turnaround-times-report.pdf.pdf" target="_blank" rel="noopener">City of Phoenix</a>).</p>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="section">
+      <div class="wrap section-head">
+        <div>
+          <h2>The tools</h2>
+          <p class="muted" style="font-size:var(--step-0)">Each one runs in the browser with demo data loaded. Change any number and watch the rest follow.</p>
+        </div>
+        <div class="tool-list">
+          <div class="tool-row">
+            <h3>Estimating workbook</h3>
+            <p>Scope-by-scope cost build-up for single-family, build-to-rent, townhome, and garden multifamily. Each line is subcontracted or self-performed with wage, burden, production rate, material, and waste. General conditions, markups, Arizona contracting tax, bid leveling, and a developer pro forma.</p>
+            <span class="who">Estimating, preconstruction, development</span>
+            <a class="btn" href="estimate.html">Open</a>
+          </div>
+          <div class="tool-row">
+            <h3>Admin workbook</h3>
+            <p>Turns the final estimate into a schedule of values. Logs change orders. Builds the monthly pay application in the standard summary and continuation sheet format. Assembles the lender draw package, generates Arizona statutory lien waivers, and tracks closeout to retainage release.</p>
+            <span class="who">Project management, project accounting</span>
+            <a class="btn" href="admin.html">Open</a>
+          </div>
+          <div class="tool-row">
+            <h3>Permit review tracker</h3>
+            <p>Logs every handoff so anyone can answer whose desk the plans are on. Measures each review cycle against the City of Phoenix goal and prices critical-path overruns.</p>
+            <span class="who">Development, project management</span>
+            <a class="btn" href="permits.html">Open</a>
+          </div>
+          <div class="tool-row">
+            <h3>Delay cost calculator</h3>
+            <p>What one more month costs: lost rent, interest carry, and extended general conditions. Feeds the daily rate the permit tracker uses.</p>
+            <span class="who">Development, ownership, lenders</span>
+            <a class="btn" href="delay.html">Open</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap section-head">
+        <div>
+          <h2>One number, every department</h2>
+          <p class="muted" style="font-size:var(--step-0)">The estimate is the source. Everything downstream ties back to it.</p>
+        </div>
+        <ol class="flow">
+          <li><strong>Estimate</strong><span>Estimating prices the job by scope and sets the contract.</span></li>
+          <li><strong>Buyout</strong><span>Bids are leveled and awarded. Savings show against budget.</span></li>
+          <li><strong>Schedule of values</strong><span>The contract becomes billing lines that tie to the dollar.</span></li>
+          <li><strong>Pay app & draw</strong><span>Monthly billing, change orders, waivers, and the lender package.</span></li>
+          <li><strong>Closeout</strong><span>Final waivers, documents, and retainage release.</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap section-head">
+        <div>
+          <h2>How teams share it</h2>
+        </div>
+        <div>
+          <p>No logins and no software to install. Work saves in your browser as you go. When estimating hands off to the PM, or the PM hands off to accounting, use <strong>Save file</strong> at the top of any page and send the file. The next person opens it with <strong>Open file</strong>.</p>
+          <p>Every workbook also exports to Excel with live formulas. The pay application downloads as a formatted summary sheet and continuation sheet, ready for the lender. Prefer to work in Excel? Download the <a href="templates/estimating-workbook-template.xlsx" download>estimating template</a> or the <a href="templates/pay-application-template.xlsx" download>pay application template</a>.</p>
+          <p>For your company, the same tools get your cost codes, your rates, your forms, and, if you want it, a shared database so everyone works in one live file.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap section-head">
+        <div>
+          <h2>What I'd need from your team</h2>
+          <p class="muted" style="font-size:var(--step-0)">The demo runs on public data and sample figures. Your history makes it accurate.</p>
+        </div>
+        <div>
+          <ul class="need-list" id="need-list"></ul>
+          <p style="margin-top:1rem"><a href="estimate.html#t-data">Full list and data sources</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap section-head">
+        <div>
+          <h2>About</h2>
+        </div>
+        <div>
+          <p id="about-text">I'm Ben Perez. I've spent nearly a decade in project finance and controls for private construction and development: multifamily, high-rise, and hyperscale data center work. I've built billing, receivables, and reporting processes for contractors whose departments didn't share a system. I hold an MBA from ASU's W. P. Carey School of Business.</p>
+          <p>These workbooks are what I set up for builders who are growing faster than their back office. If your estimate, your pay apps, and your lien waivers live in three different places, I can help.</p>
+          <p id="contact-line"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer data-footer></footer>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/templates-data.js"></script>
+  <script src="assets/js/data-defaults.js"></script>
+  <script>
+    (function () {
+      const size = document.getElementById("m-size");
+      const days = document.getElementById("m-days");
+      const out = document.getElementById("m-days-out");
+      const cost = document.getElementById("m-cost");
+      function update() {
+        const d = +days.value;
+        out.textContent = d + (d === 1 ? " day" : " days");
+        cost.textContent = GCW.fmt.money((+size.value / 30) * d);
+      }
+      size.addEventListener("input", update);
+      days.addEventListener("input", update);
+      update();
+      const need = GCW_DATA.CLIENT_DATA_NEEDED.estimating.slice(0, 6).concat(GCW_DATA.CLIENT_DATA_NEEDED.admin.slice(0, 2));
+      document.getElementById("need-list").innerHTML = need.map(([t, d]) => `<li><strong>${GCW.esc(t)}.</strong> ${GCW.esc(d)}</li>`).join("");
+      const c = GCW.CONFIG;
+      const bits = [];
+      if (c.contactEmail) bits.push(`<a href="mailto:${GCW.esc(c.contactEmail)}">${GCW.esc(c.contactEmail)}</a>`);
+      if (c.contactLinkedIn) bits.push(`<a href="${GCW.esc(c.contactLinkedIn)}">LinkedIn</a>`);
+      document.getElementById("contact-line").innerHTML = bits.length ? `Get in touch: ${bits.join(" or ")}` : "";
+    })();
+  </script>
+</body>
+</html>

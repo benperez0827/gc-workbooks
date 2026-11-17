@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Delay cost calculator</title>
+  <meta name="description" content="What one month of schedule delay costs a residential project: lost rent, interest carry, and extended site costs.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect x=%273%27 y=%273%27 width=%2726%27 height=%2726%27 rx=%274%27 fill=%27%231f2933%27/%3E%3Crect x=%277%27 y=%2711%27 width=%2718%27 height=%2710%27 rx=%272%27 fill=%27none%27 stroke=%27%23b8322a%27 stroke-width=%272.5%27/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="delay.html">
+  <header data-header></header>
+  <main class="wrap">
+    <div class="workbook-head">
+      <div>
+        <h1>Delay cost calculator</h1>
+        <p>What one more month costs once a project is under construction. Lost rent, interest carry, and extended site costs.</p>
+      </div>
+      <div class="actions no-print">
+        <select id="preset" aria-label="Load a preset"></select>
+        <button id="btn-preset">Load preset</button>
+      </div>
+    </div>
+    <div id="app" style="padding-top:1rem"></div>
+  </main>
+  <footer data-footer></footer>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/data-defaults.js"></script>
+  <script src="assets/js/estimate-calc.js"></script>
+  <script src="assets/js/delay.js"></script>
+</body>
+</html>
